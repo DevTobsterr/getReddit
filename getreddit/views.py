@@ -10,6 +10,9 @@ from .models import GetReddit_Subreddit
 from .models import GetReddit_UserInformation
 from .forms import reddit_user_information_form
 
+
+from .forms import subreddit_images_form
+
 # Create your views here.
 
 
@@ -42,6 +45,16 @@ def reddit_user_information_results(request):
     else:
         search_information["warning"] = "Warning: User Not Found"
         return render(request,'getreddit/reddit_search_account_results.html',search_information)
+
+
+def subreddit_images(request):
+    subreddit_image_search_form = {}
+    subreddit_image_search_form['user_choice_of_subreddit'] = subreddit_images_form()
+    return render(request, "getreddit/subreddit_images.html",subreddit_image_search_form)
+
+def subreddit_images_results(request):
+    return render(request, "getreddit/subreddit_images_results.html")
+
 
 
 

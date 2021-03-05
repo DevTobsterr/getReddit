@@ -15,3 +15,6 @@ class reddit_subreddit_form(forms.Form):
 
 class reddit_user_information_form(forms.Form):
     user_choice_of_username = forms.CharField(max_length=64, required=True, help_text="Enter a Redditor Username to search")
+
+class subreddit_images_form(forms.Form):
+    user_choice_of_subreddit = forms.CharField(max_length=32, required=True)
