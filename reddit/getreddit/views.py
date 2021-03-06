@@ -10,6 +10,9 @@ from .models import GetReddit_Subreddit
 from .models import GetReddit_UserInformation
 from .forms import reddit_user_information_form
 
+
+from .forms import subreddit_images_form
+
 # Create your views here.
 
 
@@ -42,6 +45,16 @@ def reddit_user_information_results(request):
     else:
         search_information["warning"] = "Warning: User Not Found"
         return render(request,'getreddit/reddit_search_account_results.html',search_information)
+
+
+def subreddit_images(request):
+    subreddit_image_search_form = {}
+    subreddit_image_search_form['subreddit_images_form'] = subreddit_images_form()
+    return render(request, "getreddit/subreddit_images.html",subreddit_image_search_form)
+
+def subreddit_images_results(request):
+    return render(request, "getreddit/subreddit_images_results.html")
+
 
 
 
@@ -98,6 +111,41 @@ class Reddit:
         results.account_is_gold = redditor.is_gold
         results.save()
 
+    def subreddit_image_search(user_choice_of_subreddit, user_choice_of_results, user_choice_of_search):
+        reddit = praw.Reddit(
+        client_id="DPn6cOtSZYZJug",
+        client_secret="WQj8aPewT55hn3JQcBO0M8f1o-AqIg",
+        user_agent="itoby24"
+        )
+
+        subreddit = reddit.subreddit(user_choice_of_subreddit)
+
+        if user_choice_of_search == "hot":
+            for submission in subreddit.hot(limit=user_choice_of_results):
+                image_url = submission.url
+                count = count + 1
+                self.URLtoImageConverter(count, image_url)
+        elif user_choice_of_search == "new":
+            for submission in subreddit.new(limit=user_choice_of_results):
+                image_url = submission.url
+                count = count + 1
+                self.URLtoImageConverter(count, image_url)
+        elif user_choice_of_search == "top":
+                for submission in subreddit.top(limit=user_choice_of_results):
+                    image_url = submission.url
+                    count = count + 1
+                    self.URLtoImageConverter(count, image_url)
+        elif user_choice_of_search == "rising":
+                for submission in subreddit.rising(limit=user_choice_of_results):
+                    image_url = submission.url
+                    count = count + 1
+                    self.URLtoImageConverter(count, image_url)
+
+        
+      
+
+
+
 
 
     def search_subreddit(user_choice_of_subreddit, user_choice_of_results, user_choice_of_search):
@@ -153,3 +201,18 @@ class Reddit:
                 results.save()
         else:
             pass 
+
+
+    def URLtoImageConverter(self, count, image_url):
+        url = image_url
+        page = requests.get(url)
+        fcount = str(count)
+        f_ext = os.path.splitext(url)[-1]
+        f_name = 'img'+fcount+"{}".format(f_ext)
+
+        if f_ext == ".gifv" or f_ext == "." or f_ext == "":
+            pass
+        else:
+            print("Downloaded Image: " + f_name)
+            with open(f_name, 'wb') as f:
+                f.write(page.content)

@@ -4,7 +4,6 @@
 
 
 
-
 <form action="results/" method="POST">
   {% csrf_token %}
   <div class="form-group">
@@ -13,22 +12,15 @@
 <br>
 <br>
 
-      <h4 id="centertxt" class="text-uppercase">Search Reddit by Subreddit</h4>
-      <h5 id="centertxt"> Search Reddit by Subreddit. Enter a Subreddit and it will return submissions within the subreddit.</h5>
+      <h4 id="centertxt" class="text-uppercase">Subreddit Image Search</h4>
+      <h5 id="centertxt"> Pull all images off a given Subreddit. Enter a Subreddit. </h5>
       <br>
       <div class="row">
         <div class="col-sm">
-          <a> Subreddit: </a>
-          {{ subreddit.user_choice_of_subreddit }}
+          <a> Enter a Subreddit: </a>
+          {{ user_information.user_choice_of_username }}
         </div>
-        <div class="col-sm">
-          <a> Number of Results: </a>
-          {{ subreddit.user_choice_of_results }}
-        </div>
-        <div class="col-sm">
-          <a> Search Method: </a>
-          {{ subreddit.user_choice_of_search }}
-        </div>
+
       </div>
       <br>
     <button type="submit" class="btn btn-primary">Search</button>
@@ -40,6 +32,14 @@
 
   </div>
 </form>
+
+
+
+
+    
+
+
+
 
 
 

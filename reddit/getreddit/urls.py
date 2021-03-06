@@ -13,7 +13,10 @@ urlpatterns = [
     path('reddit/search/reddit_user_information/', views.reddit_user_information, name="reddit_user_information"),
     path('reddit/search/reddit_user_information/results/', views.reddit_user_information_results, name="reddit_user_information_results"),
     
-        # Reddit - Posts by Username Search
+        # Reddit - Subreddit Image Search
+
+    path('reddit/search/subreddit_images/', views.subreddit_images, name="subreddit_images"),
+    path('reddit/search/subreddit_images/results/', views.subreddit_images_results, name="subreddit_images_results"),
     
 
 
