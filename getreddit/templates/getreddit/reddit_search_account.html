@@ -1,0 +1,57 @@
+{% extends "getreddit/reddit_base.html "%}
+{% block content %}
+
+
+
+
+<form action="results/" method="POST">
+  {% csrf_token %}
+  <div class="form-group">
+
+    <div id="form" class="container">
+<br>
+<br>
+
+      <h4 id="centertxt" class="text-uppercase">Search User Information on Reddit</h4>
+      <h5 id="centertxt"> Search Redditor Information. Enter a Redditor Username and it will return information on that user.</h5>
+      <br>
+      <div class="row">
+        <div class="col-sm">
+          <a> Enter a Username: </a>
+          {{ user_information.user_choice_of_username }}
+        </div>
+
+      </div>
+      <br>
+    <button type="submit" class="btn btn-primary">Search</button>
+<br>
+<br>
+
+
+    </div>
+
+  </div>
+</form>
+
+
+
+
+    
+
+
+
+
+
+
+<style>
+  #form {
+    outline-style: solid;
+    outline-color: black;
+    outline-width: 5px;
+  }
+</style>
+
+
+
+
+{% endblock content %}

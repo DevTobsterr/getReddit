@@ -1,0 +1,30 @@
+{% extends "getreddit/reddit_base.html "%}
+{% block content %}
+
+
+<div class="container"> 
+
+  {% for result in results %}
+    <h1>User Information for - {{ result.account_name }} </h1>
+    <p>Account ID: {{ result.account_id }}</p>
+    <p>Account Image Link <a href="{{ result.account_img_link }}">{{ result.account_img_link }}</a></p>
+    <p>Acount Comment Karma: {{ result.account_comment_karma }} </p>
+    <p>Acount Link Karma: {{ result.account_link_karma }} </p>
+    <p>Account is Mod Status: {{ result.account_is_mod }} </p>
+    <p>Account is Gold Status: {{ result.account_is_gold }} </p>
+    <a class="btn btn-primary" href="https://www.reddit.com/user/{{ result.account_name }}">Go To Profile</a>
+  {% endfor %}
+
+</div>
+
+
+
+<style>
+  #form {
+    outline-style: solid;
+    outline-color: black;
+    outline-width: 5px;
+  }
+</style>
+
+{% endblock content %}
