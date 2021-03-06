@@ -216,3 +216,6 @@ class Reddit:
             print("Downloaded Image: " + f_name)
             with open(f_name, 'wb') as f:
                 f.write(page.content)
+
+
+# Making Changes to commit
