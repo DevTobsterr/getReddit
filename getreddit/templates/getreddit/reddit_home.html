@@ -15,35 +15,49 @@
 <div class="container">
     <h4 class="text-uppercase"> Reddit Search Home </h4>
     <h5> Use the Tool's below to search reddit. Your search start's here.</h5>
-    <br>
     <hr>
-    <!-- Row 1 -->
-    <div id="buttons" class="row">
+
+<!-- Row 1 -->
+
+  <div class="container">
+    <div class="row">
       <div class="col-sm">
-        <a class="btn btn-primary" href="{% url 'reddit_search_subreddit' %}">Search by Subreddit</a>
+        <div class="card" style="width: 18rem;">
+          <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+          <div class="card-body">
+            <h5 class="card-title">Subreddit Search</h5>
+            <p class="card-text">Enter a subreddit, results and search method.</p>
+            <a class="btn btn-primary" href="{% url 'reddit_search_subreddit' %}">Search by Subreddit</a>
+          </div>
+        </div>
       </div>
       <div class="col-sm">
-        <a class="btn btn-primary" href="{% url 'subreddit_images' %}">Image Search by Subreddit</a>
+        <div class="card" style="width: 18rem;">
+          <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+          <div class="card-body">
+            <h5 class="card-title">Image Search (BETA)</h5>
+            <p class="card-text">Enter a subreddit and we'll pull all the images on that subreddit.</p>
+            <a class="btn btn-primary" href="{% url 'subreddit_images' %}">Image Search by Subreddit</a>
+          </div>
+        </div>
       </div>
       <div class="col-sm">
-        <a class="btn btn-primary" href="{% url 'reddit_user_information'%}">Redditor Search by Username </a>
+        <div class="card" style="width: 18rem;">
+          <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+          <div class="card-body">
+            <h5 class="card-title">Redditor Search</h5>
+            <p class="card-text">Enter a username to find out more information about that Redditor.</p>
+            <a class="btn btn-primary" href="{% url 'reddit_user_information'%}">Redditor Search by Username </a>
+          </div>
+        </div>
+  
       </div>
     </div>
-
-    <!-- Row 2 -->
-    <hr>
-    <!-- <div id="buttons" class="row">
-        <div class="col-sm">
-          One of three columns
-        </div>
-        <div class="col-sm">
-          One of three columns
-        </div>
-        <div class="col-sm">
-          One of three columns
-        </div>
-      </div> -->
   </div>
+  <br>
+
+  <!-- Copy the code above to add more rows in -->
+
 
 
   <style>
