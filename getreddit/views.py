@@ -11,6 +11,13 @@ from .models import GetReddit_UserInformation
 from .forms import reddit_user_information_form
 
 
+from .models import GetReddit_Subreddit_Images
+from .forms import subreddit_images_form
+
+
+import urllib
+
+
 from .forms import subreddit_images_form
 
 # Create your views here.
@@ -47,13 +54,24 @@ def reddit_user_information_results(request):
         return render(request,'getreddit/reddit_search_account_results.html',search_information)
 
 
+
+
 def subreddit_images(request):
     subreddit_image_search_form = {}
-    subreddit_image_search_form['user_choice_of_subreddit'] = subreddit_images_form()
+    subreddit_image_search_form['subreddit_image_search'] = subreddit_images_form()
     return render(request, "getreddit/subreddit_images.html",subreddit_image_search_form)
 
+
 def subreddit_images_results(request):
-    return render(request, "getreddit/subreddit_images_results.html")
+    if request.method == "POST":
+        form = subreddit_images_form(request.POST)
+        if form.is_valid():
+            user_choice_of_subreddit = form.cleaned_data['user_choice_of_subreddit']
+            user_choice_of_results = form.cleaned_data["user_choice_of_results"]
+            Reddit.search_image_on_subreddit(user_choice_of_subreddit, user_choice_of_results)
+            render(request, "getreddit/subreddit_images_results.html")
+    else:
+        return render(request, "getreddit/subreddit_images_results.html")
 
 
 
@@ -93,6 +111,36 @@ def reddit_search_subreddit_results(request):
 
 
 class Reddit:
+    def search_image_on_subreddit(user_choice_of_subreddit, user_choice_of_results):
+        reddit = praw.Reddit(
+        client_id="DPn6cOtSZYZJug",
+        client_secret="WQj8aPewT55hn3JQcBO0M8f1o-AqIg",
+        user_agent="itoby24"
+        )
+        subreddit = reddit.subreddit(user_choice_of_subreddit)
+
+        results = GetReddit_Subreddit_Images()
+        
+        meme_image_counter = 0
+        for submission in reddit.subreddit(user_choice_of_subreddit).new(limit=user_choice_of_results):
+            meme_image_counter += 1
+            meme_export_file_name = "Dank_Meme_{}".format(meme_image_counter)
+
+            file_extension_0 = submission.url.split("/")[-1]
+            file_extension_1 = file_extension_0.split(".")[-1]
+
+            meme_export_file_name = "Dank_Meme_{}.{}".format(meme_image_counter, file_extension_1)
+            if file_extension_1 == "gifv":
+                pass 
+            else:
+                try:
+                    results.subreddit_image = urllib.request.urlretrieve(submission.url, meme_export_file_name)
+                    results.save()
+                except:
+                    print("Unsupported Image - Continuing")
+                print("Getting Image - {} - Please wait".format(meme_export_file_name))
+        
+
     def search_user_information(user_choice_of_username): 
         reddit = praw.Reddit(
         client_id="DPn6cOtSZYZJug",

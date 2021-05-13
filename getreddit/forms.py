@@ -18,3 +18,5 @@ class reddit_user_information_form(forms.Form):
 
 class subreddit_images_form(forms.Form):
     user_choice_of_subreddit = forms.CharField(max_length=32, required=True)
+    user_choice_of_results = forms.IntegerField(max_value=1000, min_value=0, required=True)
+    

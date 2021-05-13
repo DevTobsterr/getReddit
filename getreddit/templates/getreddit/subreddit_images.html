@@ -14,12 +14,20 @@
 
       <h4 id="centertxt" class="text-uppercase">Subreddit Image Search</h4>
       <h5 id="centertxt"> Pull all images off a given Subreddit. Enter a Subreddit. </h5>
+      <h6 id="centertxt"> Note: Site will attempt your number of results request but might not match. </h6>
       <br>
       <div class="row">
         <div class="col-sm">
           <a> Enter a Subreddit: </a>
-          {{ user_choice_of_subreddit.user_choice_of_subreddit }}
+          {{ subreddit_image_search.user_choice_of_subreddit }}
+
+          <a> Number of Results: </a>
+          {{ subreddit_image_search.user_choice_of_results }}
         </div>
+        </div>
+
+        <div class="col-sm">
+
 
       </div>
       <br>
