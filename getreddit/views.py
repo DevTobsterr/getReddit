@@ -69,9 +69,9 @@ def subreddit_images_results(request):
             user_choice_of_subreddit = form.cleaned_data['user_choice_of_subreddit']
             user_choice_of_results = form.cleaned_data["user_choice_of_results"]
             Reddit.search_image_on_subreddit(user_choice_of_subreddit, user_choice_of_results)
-            render(request, "getreddit/subreddit_images_results.html")
+            return render(request,"getreddit/subreddit_images_results.html")
     else:
-        return render(request, "getreddit/subreddit_images_results.html")
+        return render(request,"getreddit/subreddit_images_results.html")
 
 
 
@@ -87,6 +87,8 @@ def reddit_search_subreddit(request):
     reddit_search_subreddit = {}
     reddit_search_subreddit['subreddit'] = reddit_subreddit_form()
     return render(request,'getreddit/reddit_search_subreddit.html', reddit_search_subreddit)
+
+
 
 def reddit_search_subreddit_results(request):
     search_information = {}
