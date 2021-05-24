@@ -25,7 +25,7 @@ class GetReddit_UserInformation(models.Model):
 
 
 class GetReddit_Subreddit_Images(models.Model):
-    subreddit_image = models.ImageField(upload_to="images/")
+    subreddit_image = models.ImageField(blank=True, null=True, upload_to='media/reddit_images/')
 
 
 

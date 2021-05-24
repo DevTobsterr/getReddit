@@ -8,6 +8,12 @@
   <img src="" alt="">{{ results.subreddit_image }}
 
 
+{% for reddit_image in results %}
+    <img src="{{ reddit_image.image.url }}" >
+{% endfor %}
+
+
+
 
 
 </div>
